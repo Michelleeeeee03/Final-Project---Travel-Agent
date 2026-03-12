@@ -96,4 +96,25 @@ def main():
         print("4. View travel plans")
         print("5. Exit")
 
-    choice = input("Type the number of your choice: ")
+        choice = input("Type the number of your choice: ")
+
+        if choice == "1":
+            search_country()
+    
+        elif choice == "2":
+            create_travel_plan()
+
+        elif choice == "3":
+            estimate_cost()
+
+        elif choice == "4":
+            view_plans()
+
+        elif choice == "5":
+            print("Byee!")
+            break
+
+        else:
+            print("Incorrect")
+
+main()
