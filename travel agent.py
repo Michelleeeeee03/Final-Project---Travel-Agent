@@ -3,8 +3,6 @@ import json
 
 travel_plans = []
 
-
-
 def search_country():
     country = input("enter a country name: ")
 
@@ -19,7 +17,7 @@ def search_country():
         region = data["region"]
         population = data["population"]
         timezones = data["timezones"]
-#put languages pls                       
+#idk how to put languages so scratch that                      
                            
         print("country information")
         print("Official Name:", name)
