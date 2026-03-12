@@ -19,22 +19,20 @@ def search_country():
         timezones = data["timezones"]
                     
                            
-        print("country information")
+        print("\ncountry information")
         print("Official Name:", name)
         print("Capital:", capital)
         print("Region:", region)
         print("Population:", population)
         print("Timezones:", ", ".join(timezones))
 
-    else: print("country not found")
-
-
+    else: print("\ncountry not found")
 
 def create_travel_plan():
-    client = input("client name: ")
+    client = input("\nclient name: ")
     countries = []
 
-    num = int(input("how many countries will you going to visit: "))
+    num = int(input("\nhow many countries will you going to visit: "))
 
     for i in range(num):
         country = input("Country name: ")
@@ -48,11 +46,11 @@ def create_travel_plan():
 
     travel_plans.append(plan)
 
-    print("travel plan created!")
+    print("\ntravel plan created!")
 
 def estimate_cost():
     if not travel_plans:
-        print("no travel plans available.")
+        print("\nno travel plans available.")
         return
     
     plan = travel_plans[-1]
@@ -66,7 +64,7 @@ def estimate_cost():
 
     total_cost = accommodation + transport + agency_cost
 
-    print("Cost estimate:")
+    print("\nCost estimate:")
     print("Accommodation:", accommodation)
     print("Transport:", transport)
     print("Agency cost:", agency_cost)
@@ -78,25 +76,25 @@ def view_plans():
         return
     
     for plan in travel_plans:
-        print("Client: ", plan ["client"])
+        print("Client: ", plan["client"])
         print("Countries: ")
 
         for country, days in plan["countries"]:
-            print(country, days, "days")
+            print(country, "-", days, "days")
 
         print("Dates: ", plan["dates"])
         print("Notes: ", plan["notes"])
 
 def main():
     while True:
-        print("Welcome to New Horizons travel, plan your travel:")
+        print("\nWelcome to New Horizons travel, plan your travel: ")
         print("1. Search country")
         print("2. Create travel plan")
         print("3. Estimate cost")
         print("4. View travel plans")
         print("5. Exit")
 
-        choice = input("Type the number of your choice: ")
+        choice = input("\nType the number of your choice: ")
 
         if choice == "1":
             search_country()
