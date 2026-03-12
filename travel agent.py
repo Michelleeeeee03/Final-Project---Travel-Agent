@@ -17,7 +17,7 @@ def search_country():
         region = data["region"]
         population = data["population"]
         timezones = data["timezones"]
-#idk how to put languages so scratch that                      
+                    
                            
         print("country information")
         print("Official Name:", name)
@@ -37,11 +37,11 @@ def create_travel_plan():
     num = int(input("how many countries will you going to visit: "))
 
     for i in range(num):
-        country = input("Country name")
-        days = int(input("days straying there:"))
+        country = input("Country name: ")
+        days = int(input("days staying there:"))
         countries.append((country,days))
     
-    dates = input("travel days: ")
+    dates = input("travel dates: ")
     notes = input("notes or special requirements: ")
 
     plan = {"client": client, "countries": countries, "dates": dates, "notes": notes}
