@@ -71,3 +71,18 @@ def estimate_cost():
     print("Transport:", transport)
     print("Agency cost:", agency_cost)
     print("Total cost:", total_cost)
+
+def view_plans():
+    if not travel_plans:
+        print("No plans saved")
+        return
+    
+    for plan in travel_plans:
+        print("Client: ", plan ["client"])
+        print("Countries: ")
+
+        for country, days in plan["countries"]:
+            print(country, days, "days")
+
+        print("Dates: ", plan["dates"])
+        print("Notes: ", plan["notes"])
