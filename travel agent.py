@@ -29,3 +29,23 @@ def search_country():
     else: print("country not found")
 
 search_country()
+
+def create_travel_plan():
+    client = input("client name:")
+    countries = []
+
+    num = int(input("how many countries will you going to visit"))
+
+    for i in range(num):
+        country = input("Country name")
+        days = int(input("days straying there:"))
+        countries.append((country,days))
+    
+    dates = input("travel days:")
+    notes = input("notes or special requirements:")
+
+    plan = {"client":client, "countries": countries, "dates": dates, "notes": notes}
+
+    travel_plans.append(plan)
+
+    print("travel plan created!")
