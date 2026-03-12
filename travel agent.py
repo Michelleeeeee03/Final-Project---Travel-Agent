@@ -28,23 +28,23 @@ def search_country():
 
     else: print("country not found")
 
-search_country()
+
 
 def create_travel_plan():
-    client = input("client name:")
+    client = input("client name: ")
     countries = []
 
-    num = int(input("how many countries will you going to visit"))
+    num = int(input("how many countries will you going to visit: "))
 
     for i in range(num):
         country = input("Country name")
         days = int(input("days straying there:"))
         countries.append((country,days))
     
-    dates = input("travel days:")
-    notes = input("notes or special requirements:")
+    dates = input("travel days: ")
+    notes = input("notes or special requirements: ")
 
-    plan = {"client":client, "countries": countries, "dates": dates, "notes": notes}
+    plan = {"client": client, "countries": countries, "dates": dates, "notes": notes}
 
     travel_plans.append(plan)
 
@@ -89,7 +89,7 @@ def view_plans():
 
 def main():
     while True:
-        print("Travel Planner:")
+        print("Welcome to New Horizons travel, plan your travel:")
         print("1. Search country")
         print("2. Create travel plan")
         print("3. Estimate cost")
