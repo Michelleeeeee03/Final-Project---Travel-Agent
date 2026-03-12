@@ -49,3 +49,25 @@ def create_travel_plan():
     travel_plans.append(plan)
 
     print("travel plan created!")
+
+def estimate_cost():
+    if not travel_plans:
+        print("no travel plans available.")
+        return
+    
+    plan = travel_plans[-1]
+
+    daily_cost = 150
+    transport = 200
+    agency_cost = 100
+
+    total_days = sum(days for country, days in plan["countries"])
+    accommodation =  total_days + daily_cost
+
+    total_cost = accommodation + transport + agency_cost
+
+    print("Cost estimate:")
+    print("Accommodation:", accommodation)
+    print("Transport:", transport)
+    print("Agency cost:", agency_cost)
+    print("Total cost:", total_cost)
