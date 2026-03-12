@@ -86,3 +86,14 @@ def view_plans():
 
         print("Dates: ", plan["dates"])
         print("Notes: ", plan["notes"])
+
+def main():
+    while True:
+        print("Travel Planner:")
+        print("1. Search country")
+        print("2. Create travel plan")
+        print("3. Estimate cost")
+        print("4. View travel plans")
+        print("5. Exit")
+
+    choice = input("Type the number of your choice: ")
