@@ -1,5 +1,5 @@
 import requests
-import json
+import datetime
 
 travel_plans = []
 
@@ -13,10 +13,17 @@ def search_country():
         data = response.json()[0]
 
         name = data["name"]["official"]
-        capital = data.get("capital", ["not valid"])
+        capital = data.get("capital", ["not valid"])[0]
         region = data["region"]
         population = data["population"]
         timezones = data["timezones"]
+        code = data.get("cca2")
+
+        currency_dictionary = data.get("currencies", {})
+        currency_name = list(currency_dictionary.values())[0]["name"]
+
+        languages_dictionary = data.get("languages", {})
+        languages = ", ".join(languages_dictionary.values())
                     
                            
         print("\ncountry information")
@@ -25,6 +32,10 @@ def search_country():
         print("Region:", region)
         print("Population:", population)
         print("Timezones:", ", ".join(timezones))
+        print("Country code:", code)
+        print("Currency:", currency_name)
+        print("Local time:", datetime.datetime.now().strftime("%H:%M"))
+        print("Languages:", languages)
 
     else: print("\ncountry not found")
 
@@ -32,25 +43,53 @@ def create_travel_plan():
     client = input("\nclient name: ")
     countries = []
 
-    num = int(input("\nhow many countries will you going to visit: "))
+    while True:
+        try:
+            num = int(input("\nhow many countries are you going to visit: "))
+            if num >= 1:
+                break
+            print("You must visit at least 1 country.")
+            
+        except:
+            print("Invalid number.")
 
     for i in range(num):
         country = input("Country name: ")
-        days = int(input("days staying there:"))
-        countries.append((country,days))
+        while True:
+            try:
+                days = int(input("days staying there:"))
+                if days >= 1:
+                    countries.append((country,days))
+                    break
+                print("Stay must be at least 1 day.")
+            except:
+                print("Invalid input.")
     
-    dates = input("travel dates: ")
+    while True:
+        date1 = input("What date are you arriving at your destination? (YYYY-MM-DD)")
+        date2 = input("What date are you leaving your destination? (YYYY-MM-DD)")
+
+        try:
+            arrival = datetime.datetime.strptime(date1, "%Y-%m-%d")
+            departure = datetime.datetime.strptime(date2, "%Y-%m-%d")
+
+            if departure <= arrival:
+                print("You can't leave before or on the day you arrive")
+            else:
+                dates = f"{date1} to {date2}"
+                break
+
+        except ValueError:
+            print("Use the format YYYY-MM-DD")
+
     notes = input("notes or special requirements: ")
-
     plan = {"client": client, "countries": countries, "dates": dates, "notes": notes}
-
     travel_plans.append(plan)
-
     print("\ntravel plan created!")
 
 def estimate_cost():
     if not travel_plans:
-        print("\nno travel plans available.")
+        print("\no travel plans available.")
         return
     
     plan = travel_plans[-1]
@@ -60,7 +99,7 @@ def estimate_cost():
     agency_cost = 100
 
     total_days = sum(days for country, days in plan["countries"])
-    accommodation =  total_days + daily_cost
+    accommodation =  total_days * daily_cost
 
     total_cost = accommodation + transport + agency_cost
 
@@ -80,8 +119,8 @@ def view_plans():
         print("Countries: ")
 
         for country, days in plan["countries"]:
-            print(country, "-", days, "days")
-
+            print(country, ":", days, "days")
+       
         print("Dates: ", plan["dates"])
         print("Notes: ", plan["notes"])
 
